@@ -42,6 +42,20 @@ app.post('/create', (req, res) => {
     });
 });
 
+// GET health request
+app.get('/health', (req, res) => {
+    const query = 'SELECT 1+1 FROM emotion_data';
+    connection.query(query, (error, results, fields) => {
+        if (error) {
+            console.error("Issue with database connection: ", error);
+            res.sendStatus(500);
+        } else {
+            console.log("API and DB connections are functional");
+            res.sendStatus(200);
+        }
+    });
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
