@@ -20,12 +20,12 @@ const connection = mysql.createConnection({
 connection.connect()
 
 // POST request to add record to db
-app.post('/create/:id/:valence/:activation/:emotion/:ts', (req, res) => {
-    var id = req.params.id;
-    var valence = req.params.valence;
-    var activation = req.params.activation;
-    var emotion = req.params.emotion;
-    var ts = req.params.ts;
+app.post('/create', (req, res) => {
+    var id = req.body.id;
+    var valence = req.body.valence;
+    var activation = req.body.activation;
+    var emotion = req.body.emotion;
+    var ts = req.body.ts;
 
     const insertQuery = 'INSERT INTO emotion_data (participant_id, valence, activation, current_emotion, ts) VALUES (?, ?, ?, ?, ?)';
     const values = [id, valence, activation, emotion, ts];
@@ -41,13 +41,6 @@ app.post('/create/:id/:valence/:activation/:emotion/:ts', (req, res) => {
     });
 });
 
-// PUT request to update an existing record in db
-// to be implemented? - implement if you want only the most recent data from participants
-
-
-
-// GET request to determine if participant is in DB
-// to be implemented?
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
