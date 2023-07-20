@@ -2,21 +2,22 @@ const express = require("express");
 const mysql = require('mysql')
 const bodyParser = require('body-parser');
 const cors = require("cors");
+const dotenv = require("dotenv")
 
 const app = express()
 const port = 3000
 
 app.use(bodyParser.json());
 app.use(cors());
+require('dotenv').config()
 
 // use environment variables here
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '#',
-    database: 'emotionmap'
-  })
-
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_SCHEMA
+})
 connection.connect()
 
 // POST request to add record to db
