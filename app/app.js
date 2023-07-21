@@ -9,7 +9,8 @@ const port = 3000
 
 app.use(bodyParser.json());
 app.use(cors());
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config();
+
 
 // use environment variables here
 const connection = mysql.createConnection({
@@ -55,7 +56,6 @@ app.get('/health', (req, res) => {
         }
     });
 });
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

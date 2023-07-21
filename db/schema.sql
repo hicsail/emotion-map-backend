@@ -1,3 +1,5 @@
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'rsPASS1!';
+
 DROP DATABASE IF EXISTS emotionmap;
 CREATE DATABASE emotionmap;
 USE emotionmap;
@@ -8,5 +10,5 @@ CREATE TABLE emotion_data (
     activation INT,
     current_emotion VARCHAR(255),
     ts DATETIME,
-    PRIMARY KEY (participant_id, timestamp)
+    PRIMARY KEY (participant_id, ts)
 );
