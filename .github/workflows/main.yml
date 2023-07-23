@@ -7,10 +7,7 @@ on:
       - 'main'
     tags:
       - 'v*'
-  pull_request:
-    branches:
-      - 'main'
-
+      
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -37,4 +34,4 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: hicsail/emotion-lab-backend
+          tags: hicsail/emotion-map-backend
