@@ -3,7 +3,7 @@ version: '3'
 services:
     app:
         container_name: hicsail
-        image: emotion-map-backend
+        image: hicsail/emotion-map-backend
         restart: always
         ports:
             - 3000:3000
