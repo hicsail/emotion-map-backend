@@ -15,6 +15,7 @@ services:
     
     db:
         image: mysql:8.0
+        container_name: emotions-map-mysql
         restart: always
         volumes:
             - ./db:/docker-entrypoint-initdb.d
