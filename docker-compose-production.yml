@@ -1,0 +1,33 @@
+# ./docker-compose-production.yml
+version: '3'
+services:
+    app:
+        container_name: emotion-map-backend-app
+        image: hicsail/emotion-map-backend
+        restart: always
+        ports:
+            - 3000:3000
+        env_file:
+            - ./stack.env
+        depends_on:
+            db:
+                condition: service_healthy
+    db:
+        image: mysql:8.0
+        container_name: emotion-map-backend-db
+        restart: always
+        volumes:
+            - emotion-map-production:/docker-entrypoint-initdb.d
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+    backup:
+        image: offen/docker-volume-backup:v2.27.0
+        restart: always
+        env_file:
+            - ./stack.env
+        volumes:
+            - emotion-map-production:/backup:ro
+volumes:
+    emotion-map-production: ~
