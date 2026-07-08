@@ -16,8 +16,6 @@ services:
         image: mysql:8.0
         container_name: emotion-map-backend-db
         restart: always
-        ports: 
-            - 3306:3306
         env_file:
             - ./stack.env
         volumes:
